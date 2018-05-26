@@ -1,8 +1,18 @@
 /*
  * Create a list that holds all of your cards
  */
+var cards = ['fa-diamond', 'fa-diamond',
+			 'fa-paper-plane-o', 'fa-paper-plane-o',
+			 'fa-anchor', 'fa-anchor',
+			 'fa-bolt', 'fa-bolt',
+			 'fa-cube', 'fa-cube',
+			 'fa-leaf', 'fa-leaf',
+			 'fa-bicycle', 'fa-bicycle',
+			 'fa-bomb', 'fa-bomb'];
 
-
+function generateCard(card) {
+	return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
+}
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -37,10 +47,61 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+function initGame() {
+	var deck = document.querySelector('.deck');
+	var cardHTML = cards.map(function(card) {
+		return generateCard(card);
+	});
+	moves = 0;
+	moveCounter.innerText = moves;
+
+	deck.innerHTML = cardHTML.join('');
+}
+
+var openCards = [];
+var moves = 0;
+var moveCounter = document.querySelector('.moves');
+
+initGame();
 var allCards = document.querySelectorAll('.card');
+
 
 allCards.forEach(function(card) {
 	card.addEventListener('click', function(e) {
-		card.classList.add('open', 'show');
+
+		if (!card.classList.contains('open') && !card.classList.contains('show')) {
+			openCards.push(card);
+			card.classList.add('open', 'show');
+
+			if (openCards.length == 2) {
+				// check if cards match
+				// but need to make sure you can't click the same card twice and count that as a match
+				if (openCards[0].dataset.card == openCards[1].dataset.card) {
+					openCards[0].classList.add('match');
+					openCards[0].classList.add('open');
+					openCards[0].classList.add('show');
+
+					openCards[1].classList.add('match');
+					openCards[1].classList.add('open');
+					openCards[1].classList.add('show');
+
+					openCards = [];
+				}
+
+				else {
+					// if no match, cards should flip back
+					setTimeout(function() {
+						openCards.forEach(function(card) {
+							card.classList.remove('open', 'show');
+						});
+
+						openCards = [];
+					}, 1000);
+				}
+
+				moves += 1;
+				moveCounter.innerText = moves;
+			}
+		}
 	});
 });

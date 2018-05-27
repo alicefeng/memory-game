@@ -36,8 +36,7 @@ function shuffle(array) {
 }
 
 function showCard(card) {
-	card.classList.add('open');
-	card.classList.add('show');
+	card.classList.add('open', 'show');
 }
 
 /*
@@ -63,6 +62,8 @@ function initGame() {
 	moves = 0;
 	moveCounter.innerText = moves;
 
+	matches = 0;
+
 	resetStars(3);
 }
 
@@ -78,7 +79,6 @@ function playGame() {
 
 				if (openCards.length == 2) {
 					// check if cards match
-					// but need to make sure you can't click the same card twice and count that as a match
 					if (openCards[0].dataset.card == openCards[1].dataset.card) {
 						openCards[0].classList.add('match');
 						showCard(openCards[0]);
@@ -87,6 +87,7 @@ function playGame() {
 						showCard(openCards[1]);
 
 						openCards = [];
+						matches += 1;
 					}
 
 					else {
@@ -107,6 +108,11 @@ function playGame() {
 					if(moves % 10 === 0) {
 						removeStar();
 					}
+
+					// show congrats modal when game is over
+					if(matches === cards.length/2) {
+						congratsModal.classList.add('won');
+					}
 				}
 			}
 		});
@@ -116,9 +122,12 @@ function playGame() {
 var openCards = [];
 var moves;
 var moveCounter = document.querySelector('.moves');
+var matches;
 var resetButton = document.querySelector('.restart');
 var starHTML = '<li><i class="fa fa-star"></i></li>';
 var starCounter = document.querySelector('.stars');
+var congratsModal = document.querySelector('.congrats_modal');
+var playAgainButton = document.querySelector('.play_again');
 
 initGame();
 playGame();
@@ -129,7 +138,13 @@ resetButton.addEventListener('click', function(e) {
 	playGame();
 })
 
-// decrease number of stars every 10 moves
+// start new game when player reaches end
+playAgainButton.addEventListener('click', function(e) {
+	initGame();
+	playGame();
+	congratsModal.classList.remove('won');
+})
+
 // function to remove star
 function removeStar() {
 	var numStars = starCounter.childElementCount;

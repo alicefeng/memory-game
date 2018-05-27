@@ -18,7 +18,7 @@
         <section class="score-panel">
         	<ul class="stars"></ul>
 
-        	<span class="moves">3</span> Moves
+        	<span class="moves"></span> Moves
 
             <div class="restart">
         		<i class="fa fa-repeat"></i>
@@ -26,6 +26,15 @@
         </section>
 
         <ul class="deck"></ul>
+
+        <div class="congrats_modal">
+            <h2>You rock!</h2>
+            <p>Well done! You won the game</p>
+            <p>Number of moves: <span class="moves"></span></p>
+            <p>Number of stars: <span class="stars"></span></p>
+            <p>Total Time: <span class="time"></span></p>
+            <button class="play_again">Play Again!</button>
+        </div>
     </div>
 
     <script src="js/app.js"></script>

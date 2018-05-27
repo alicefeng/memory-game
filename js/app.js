@@ -73,7 +73,7 @@ function showCard(card) {
 allCards.forEach(function(card) {
 	card.addEventListener('click', function(e) {
 
-		if (!card.classList.contains('open') && !card.classList.contains('show')) {
+		if (!card.classList.contains('open') && !card.classList.contains('show') && openCards.length <=1) {
 			openCards.push(card);
 			showCard(card);
 

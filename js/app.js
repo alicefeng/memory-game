@@ -62,6 +62,10 @@ function initGame() {
 	moves = 0;
 	moveCounter.innerText = moves;
 
+	timeElapsed = 0;
+	timer.innerText = "00:00:00";
+	// newTime = setInterval(getNewTime, 1000);
+
 	matches = 0;
 
 	resetStars(3);
@@ -112,6 +116,7 @@ function playGame() {
 					// show congrats modal when game is over
 					if(matches === cards.length/2) {
 						congratsPopup.classList.add('won');
+						clearInterval(newTime);
 					}
 				}
 			}
@@ -126,11 +131,15 @@ var matches;
 var resetButton = document.querySelector('.restart');
 var starHTML = '<li><i class="fa fa-star"></i></li>';
 var starCounter = document.querySelector('.stars');
+var timer = document.querySelector('.timer');
+var timeElapsed;
+var newTime;
 var congratsPopup = document.querySelector('.congrats_popup');
 var playAgainButton = document.querySelector('.play_again');
 
 initGame();
 playGame();
+newTime = setInterval(getNewTime, 1000);
 
 // reset game when reset button is clicked
 resetButton.addEventListener('click', function(e) {
@@ -142,6 +151,7 @@ resetButton.addEventListener('click', function(e) {
 playAgainButton.addEventListener('click', function(e) {
 	initGame();
 	playGame();
+	newTime = setInterval(getNewTime, 1000);
 	congratsPopup.classList.remove('won');
 })
 
@@ -157,4 +167,14 @@ function removeStar() {
 // reset stars upon a new game
 function resetStars(totalStars) {
 	starCounter.innerHTML = starHTML.repeat(totalStars);
+}
+
+function getNewTime() {
+    timeElapsed += 1000;
+
+    var hours = Math.floor(timeElapsed/(60*60*1000));
+    var minutes = Math.floor((timeElapsed - (hours*60*60*1000))/(60*1000));
+    var seconds = Math.floor((timeElapsed - (hours*60*60*1000) - (minutes*60*1000))/1000);
+
+    timer.innerHTML = `${hours}`.padStart(2, "0") + ":" + `${minutes}`.padStart(2, "0") + ":" + `${seconds}`.padStart(2, "0");
 }

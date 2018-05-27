@@ -49,7 +49,8 @@ function shuffle(array) {
 
 function initGame() {
 	var deck = document.querySelector('.deck');
-	var cardHTML = cards.map(function(card) {
+	var shuffledCards = shuffle(cards);
+	var cardHTML = shuffledCards.map(function(card) {
 		return generateCard(card);
 	});
 	moves = 0;

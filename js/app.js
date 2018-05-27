@@ -111,7 +111,7 @@ function playGame() {
 
 					// show congrats modal when game is over
 					if(matches === cards.length/2) {
-						congratsModal.classList.add('won');
+						congratsPopup.classList.add('won');
 					}
 				}
 			}
@@ -126,7 +126,7 @@ var matches;
 var resetButton = document.querySelector('.restart');
 var starHTML = '<li><i class="fa fa-star"></i></li>';
 var starCounter = document.querySelector('.stars');
-var congratsModal = document.querySelector('.congrats_modal');
+var congratsPopup = document.querySelector('.congrats_popup');
 var playAgainButton = document.querySelector('.play_again');
 
 initGame();
@@ -142,7 +142,7 @@ resetButton.addEventListener('click', function(e) {
 playAgainButton.addEventListener('click', function(e) {
 	initGame();
 	playGame();
-	congratsModal.classList.remove('won');
+	congratsPopup.classList.remove('won');
 })
 
 // function to remove star

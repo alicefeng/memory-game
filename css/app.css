@@ -112,7 +112,7 @@ h1 {
 /*
  * Styles for the congratulations modal
 */
-.congrats_modal {
+.congrats_popup {
     position: absolute;
     z-index: 2;
     display: none;

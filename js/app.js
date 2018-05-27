@@ -65,25 +65,27 @@ var moveCounter = document.querySelector('.moves');
 initGame();
 var allCards = document.querySelectorAll('.card');
 
+function showCard(card) {
+	card.classList.add('open');
+	card.classList.add('show');
+}
 
 allCards.forEach(function(card) {
 	card.addEventListener('click', function(e) {
 
 		if (!card.classList.contains('open') && !card.classList.contains('show')) {
 			openCards.push(card);
-			card.classList.add('open', 'show');
+			showCard(card);
 
 			if (openCards.length == 2) {
 				// check if cards match
 				// but need to make sure you can't click the same card twice and count that as a match
 				if (openCards[0].dataset.card == openCards[1].dataset.card) {
 					openCards[0].classList.add('match');
-					openCards[0].classList.add('open');
-					openCards[0].classList.add('show');
+					showCard(openCards[0]);
 
 					openCards[1].classList.add('match');
-					openCards[1].classList.add('open');
-					openCards[1].classList.add('show');
+					showCard(openCards[1]);
 
 					openCards = [];
 				}

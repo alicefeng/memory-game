@@ -58,10 +58,12 @@ function initGame() {
 	var cardHTML = shuffledCards.map(function(card) {
 		return generateCard(card);
 	});
+	deck.innerHTML = cardHTML.join('');
+
 	moves = 0;
 	moveCounter.innerText = moves;
 
-	deck.innerHTML = cardHTML.join('');
+	resetStars(3);
 }
 
 function playGame() {
@@ -100,6 +102,11 @@ function playGame() {
 
 					moves += 1;
 					moveCounter.innerText = moves;
+
+					// remove one star every 10 moves
+					if(moves % 10 === 0) {
+						removeStar();
+					}
 				}
 			}
 		});
@@ -110,13 +117,29 @@ var openCards = [];
 var moves;
 var moveCounter = document.querySelector('.moves');
 var resetButton = document.querySelector('.restart');
+var starHTML = '<li><i class="fa fa-star"></i></li>';
+var starCounter = document.querySelector('.stars');
 
 initGame();
 playGame();
-
 
 // reset game when reset button is clicked
 resetButton.addEventListener('click', function(e) {
 	initGame();
 	playGame();
 })
+
+// decrease number of stars every 10 moves
+// function to remove star
+function removeStar() {
+	var numStars = starCounter.childElementCount;
+
+	if(numStars > 0) {
+		starCounter.removeChild(starCounter.firstElementChild);
+	}
+}
+
+// reset stars upon a new game
+function resetStars(totalStars) {
+	starCounter.innerHTML = starHTML.repeat(totalStars);
+}

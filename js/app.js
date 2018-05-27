@@ -115,8 +115,8 @@ function playGame() {
 
 					// show congrats modal when game is over
 					if(matches === cards.length/2) {
-						congratsPopup.classList.add('won');
 						clearInterval(newTime);
+						makeCongratsPopup();
 					}
 				}
 			}
@@ -135,6 +135,9 @@ var timer = document.querySelector('.timer');
 var timeElapsed;
 var newTime;
 var congratsPopup = document.querySelector('.congrats_popup');
+var finalStars = document.querySelector('.final_stars');
+var finalMoves = document.querySelector('.final_moves');
+var finalTime = document.querySelector('.final_time');
 var playAgainButton = document.querySelector('.play_again');
 
 initGame();
@@ -169,6 +172,7 @@ function resetStars(totalStars) {
 	starCounter.innerHTML = starHTML.repeat(totalStars);
 }
 
+// increments time and parses it for display
 function getNewTime() {
     timeElapsed += 1000;
 
@@ -177,4 +181,13 @@ function getNewTime() {
     var seconds = Math.floor((timeElapsed - (hours*60*60*1000) - (minutes*60*1000))/1000);
 
     timer.innerHTML = `${hours}`.padStart(2, "0") + ":" + `${minutes}`.padStart(2, "0") + ":" + `${seconds}`.padStart(2, "0");
+}
+
+// populate final popup with stats
+function makeCongratsPopup() {
+	finalStars.innerText = starCounter.childElementCount;
+	finalMoves.innerText = moves;
+	finalTime.innerText = timer.innerText;
+
+	congratsPopup.classList.add('won');
 }

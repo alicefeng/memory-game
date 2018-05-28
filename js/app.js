@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-var cards = ['fa-diamond', 'fa-diamond',
+const cards = ['fa-diamond', 'fa-diamond',
 			 'fa-paper-plane-o', 'fa-paper-plane-o',
 			 'fa-anchor', 'fa-anchor',
 			 'fa-bolt', 'fa-bolt',
@@ -22,7 +22,7 @@ function generateCard(card) {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -52,9 +52,9 @@ function showCard(card) {
 
 // initialize game by setting board and resetting all counters
 function initGame() {
-	var deck = document.querySelector('.deck');
-	var shuffledCards = shuffle(cards);
-	var cardHTML = shuffledCards.map(function(card) {
+	const deck = document.querySelector('.deck');
+	let shuffledCards = shuffle(cards);
+	let cardHTML = shuffledCards.map(function(card) {
 		return generateCard(card);
 	});
 	deck.innerHTML = cardHTML.join('');
@@ -72,7 +72,7 @@ function initGame() {
 }
 
 function playGame() {
-	var allCards = document.querySelectorAll('.card');
+	const allCards = document.querySelectorAll('.card');
 
 	allCards.forEach(function(card) {
 		card.addEventListener('click', function(e) {
@@ -124,21 +124,21 @@ function playGame() {
 	});
 }
 
-var openCards = [];
-var moves;
-var moveCounter = document.querySelector('.moves');
-var matches;
-var resetButton = document.querySelector('.restart');
-var starHTML = '<li><i class="fa fa-star"></i></li>';
-var starCounter = document.querySelector('.stars');
-var timer = document.querySelector('.timer');
-var timeElapsed;
-var newTime;
-var congratsPopup = document.querySelector('.congrats_popup');
-var finalStars = document.querySelector('.final_stars');
-var finalMoves = document.querySelector('.final_moves');
-var finalTime = document.querySelector('.final_time');
-var playAgainButton = document.querySelector('.play_again');
+let openCards = [];
+let moves, matches, timeElapsed;
+const moveCounter = document.querySelector('.moves');
+// var matches;
+const resetButton = document.querySelector('.restart');
+const starHTML = '<li><i class="fa fa-star"></i></li>';
+const starCounter = document.querySelector('.stars');
+const timer = document.querySelector('.timer');
+// var timeElapsed;
+let newTime;
+const congratsPopup = document.querySelector('.congrats_popup');
+const finalStars = document.querySelector('.final_stars');
+const finalMoves = document.querySelector('.final_moves');
+const finalTime = document.querySelector('.final_time');
+const playAgainButton = document.querySelector('.play_again');
 
 initGame();
 playGame();
@@ -160,7 +160,7 @@ playAgainButton.addEventListener('click', function(e) {
 
 // function to remove star
 function removeStar() {
-	var numStars = starCounter.childElementCount;
+	let numStars = starCounter.childElementCount;
 
 	if(numStars > 0) {
 		starCounter.removeChild(starCounter.firstElementChild);
@@ -176,9 +176,9 @@ function resetStars(totalStars) {
 function getNewTime() {
     timeElapsed += 1000;
 
-    var hours = Math.floor(timeElapsed/(60*60*1000));
-    var minutes = Math.floor((timeElapsed - (hours*60*60*1000))/(60*1000));
-    var seconds = Math.floor((timeElapsed - (hours*60*60*1000) - (minutes*60*1000))/1000);
+    let hours = Math.floor(timeElapsed/(60*60*1000));
+    let minutes = Math.floor((timeElapsed - (hours*60*60*1000))/(60*1000));
+    let seconds = Math.floor((timeElapsed - (hours*60*60*1000) - (minutes*60*1000))/1000);
 
     timer.innerHTML = `${hours}`.padStart(2, "0") + ":" + `${minutes}`.padStart(2, "0") + ":" + `${seconds}`.padStart(2, "0");
 }

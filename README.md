@@ -12,3 +12,4 @@ This game uses vanilla JS. The only other dependencies are:
 
 - Font-Awesome
 - Google Fonts
+- animate.css

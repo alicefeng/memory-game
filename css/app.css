@@ -39,8 +39,8 @@ h1 {
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
+    width: 600px;
+    height: 600px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
@@ -127,4 +127,52 @@ h1 {
 
 .won {
     display: block;
+}
+
+/*
+ * Make design responsive
+*/
+
+/* For phones */
+@media screen and (max-width: 599px) {
+    .score-panel {
+        width: 90vmin;
+    }
+
+    .deck {
+        width: 90vmin;
+        height: 90vmin;
+        padding: 2vmin;
+        margin: 0;
+    }
+
+    .deck .card {
+        width: 20vmin;
+        height: 20vmin;
+    }
+
+    div.restart {
+        min-width: 40px;
+        min-height: 40px;
+    }
+}
+
+/* For tablets */
+@media screen and (min-width: 600px) and (max-width: 1279px) {
+    .deck {
+        width: 80vmin;
+        height: 80vmin;
+        padding: 2vmin;
+        margin: 0;
+    }
+
+    .deck .card {
+        width: 18vmin;
+        height: 18vmin;
+    }
+
+    div.restart {
+        min-width: 40px;
+        min-height: 40px;
+    }
 }

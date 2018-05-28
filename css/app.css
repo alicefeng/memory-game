@@ -131,7 +131,7 @@ h1 {
     transform: translate(0, 40%);
 }
 
-.congrats_text ul {
+.congrats_text .stats {
     list-style-type: none;
     padding: 0;
 }
@@ -174,7 +174,7 @@ h1 {
         height: 20vmin;
     }
 
-    div.restart {
+    .restart {
         min-width: 40px;
         min-height: 40px;
     }
@@ -194,7 +194,7 @@ h1 {
         height: 18vmin;
     }
 
-    div.restart {
+    .restart {
         min-width: 40px;
         min-height: 40px;
     }

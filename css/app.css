@@ -41,10 +41,10 @@ h1 {
 .deck {
     width: 600px;
     height: 600px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: #e5e5e5;
     padding: 32px;
     border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    box-shadow: 5px 10px 10px 0 rgba(46, 61, 73, 0.3);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -55,7 +55,7 @@ h1 {
 .deck .card {
     height: 125px;
     width: 125px;
-    background: #2e3d49;
+    background: #eee;
     font-size: 0;
     color: #ffffff;
     border-radius: 8px;
@@ -63,12 +63,12 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.3);
 }
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #02b3e4;
+    background: #88b8d6;
     cursor: default;
 }
 
@@ -78,7 +78,7 @@ h1 {
 
 .deck .card.match {
     cursor: default;
-    background: #02ccba;
+    background: #99d3df;
     font-size: 33px;
 }
 
@@ -119,10 +119,33 @@ h1 {
 .congrats_popup {
     position: absolute;
     z-index: 2;
+    top: 0;
     display: none;
     background: white;
     height: 100vh;
     width: 100vw;
+}
+
+.congrats_text {
+    text-align: center;
+    transform: translate(0, 40%);
+}
+
+.congrats_text ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.play_again {
+    background: #88b8d6;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    color: #fff;
+    height: 50px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .won {

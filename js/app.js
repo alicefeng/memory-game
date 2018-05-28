@@ -63,8 +63,7 @@ function initGame() {
 	moveCounter.innerText = moves;
 
 	timeElapsed = 0;
-	timer.innerText = "00:00:00";
-	// newTime = setInterval(getNewTime, 1000);
+	timer.innerText = '00:00:00';
 
 	matches = 0;
 
@@ -180,7 +179,7 @@ function getNewTime() {
     let minutes = Math.floor((timeElapsed - (hours*60*60*1000))/(60*1000));
     let seconds = Math.floor((timeElapsed - (hours*60*60*1000) - (minutes*60*1000))/1000);
 
-    timer.innerHTML = `${hours}`.padStart(2, "0") + ":" + `${minutes}`.padStart(2, "0") + ":" + `${seconds}`.padStart(2, "0");
+    timer.innerHTML = `${hours}`.padStart(2, '0') + ':' + `${minutes}`.padStart(2, '0') + ':' + `${seconds}`.padStart(2, '0');
 }
 
 // populate final popup with stats

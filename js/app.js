@@ -39,6 +39,40 @@ function showCard(card) {
 	card.classList.add('open', 'show');
 }
 
+// function to remove star
+function removeStar() {
+	let numStars = starCounter.childElementCount;
+
+	if(numStars > 0) {
+		starCounter.removeChild(starCounter.firstElementChild);
+	}
+}
+
+// reset stars upon a new game
+function resetStars(totalStars) {
+	starCounter.innerHTML = starHTML.repeat(totalStars);
+}
+
+// increments time and parses it for display
+function getNewTime() {
+    timeElapsed += 1000;
+
+    let hours = Math.floor(timeElapsed/(60*60*1000));
+    let minutes = Math.floor((timeElapsed - (hours*60*60*1000))/(60*1000));
+    let seconds = Math.floor((timeElapsed - (hours*60*60*1000) - (minutes*60*1000))/1000);
+
+    timer.innerHTML = `${hours}`.padStart(2, '0') + ':' + `${minutes}`.padStart(2, '0') + ':' + `${seconds}`.padStart(2, '0');
+}
+
+// populate final popup with stats
+function makeCongratsPopup() {
+	finalStars.innerText = starCounter.childElementCount;
+	finalMoves.innerText = moves;
+	finalTime.innerText = timer.innerText;
+
+	congratsPopup.classList.add('won');
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -68,6 +102,8 @@ function initGame() {
 	matches = 0;
 
 	resetStars(3);
+
+	playGame();
 }
 
 function playGame() {
@@ -126,12 +162,10 @@ function playGame() {
 let openCards = [];
 let moves, matches, timeElapsed;
 const moveCounter = document.querySelector('.moves');
-// var matches;
 const resetButton = document.querySelector('.restart');
 const starHTML = '<li><i class="fa fa-star"></i></li>';
 const starCounter = document.querySelector('.stars');
 const timer = document.querySelector('.timer');
-// var timeElapsed;
 let newTime;
 const congratsPopup = document.querySelector('.congrats_popup');
 const finalStars = document.querySelector('.final_stars');
@@ -140,53 +174,17 @@ const finalTime = document.querySelector('.final_time');
 const playAgainButton = document.querySelector('.play_again');
 
 initGame();
-playGame();
 newTime = setInterval(getNewTime, 1000);
 
 // reset game when reset button is clicked
 resetButton.addEventListener('click', function(e) {
 	initGame();
-	playGame();
+
 })
 
 // start new game when player reaches end
 playAgainButton.addEventListener('click', function(e) {
 	initGame();
-	playGame();
 	newTime = setInterval(getNewTime, 1000);
 	congratsPopup.classList.remove('won');
 })
-
-// function to remove star
-function removeStar() {
-	let numStars = starCounter.childElementCount;
-
-	if(numStars > 0) {
-		starCounter.removeChild(starCounter.firstElementChild);
-	}
-}
-
-// reset stars upon a new game
-function resetStars(totalStars) {
-	starCounter.innerHTML = starHTML.repeat(totalStars);
-}
-
-// increments time and parses it for display
-function getNewTime() {
-    timeElapsed += 1000;
-
-    let hours = Math.floor(timeElapsed/(60*60*1000));
-    let minutes = Math.floor((timeElapsed - (hours*60*60*1000))/(60*1000));
-    let seconds = Math.floor((timeElapsed - (hours*60*60*1000) - (minutes*60*1000))/1000);
-
-    timer.innerHTML = `${hours}`.padStart(2, '0') + ':' + `${minutes}`.padStart(2, '0') + ':' + `${seconds}`.padStart(2, '0');
-}
-
-// populate final popup with stats
-function makeCongratsPopup() {
-	finalStars.innerText = starCounter.childElementCount;
-	finalMoves.innerText = moves;
-	finalTime.innerText = timer.innerText;
-
-	congratsPopup.classList.add('won');
-}

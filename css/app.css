@@ -17,8 +17,9 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    background: #f6f6f6;
+    font-family: 'Roboto', sans-serif;
+    color: #7f7f7f;
 }
 
 .container {
@@ -30,8 +31,7 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-weight: 200;
 }
 
 /*
